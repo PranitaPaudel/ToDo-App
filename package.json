@@ -15,12 +15,8 @@
     "postcss": "^8.5.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-<<<<<<< HEAD
     "react-router-dom": "^7.6.1",
     "tailwindcss": "^4.1.8"
-=======
-    "react-router-dom": "^7.6.1"
->>>>>>> de22f6093af3a43cfe963eccea02e4ffbebcf805
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
