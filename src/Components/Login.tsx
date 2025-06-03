@@ -1,14 +1,28 @@
 import "../index.css";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Register from "./Register";
+import { ToastContainer, toast } from "react-toastify/unstyled";
 
 function Login() {
+  const [uname, setUname] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (uname == "pranita" && password == "pranita123") {
+      toast.success("Login Sucessfull!");
+    } else {
+      toast.error("Try again!");
+    }
+  };
+
   return (
     <Fragment>
+      <ToastContainer position="top-center"></ToastContainer>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-md">
           <h2 className="text-xl text-center font-bold text-gray-600">Login</h2>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit} method="">
             <div>
               <label
                 htmlFor="uname"
@@ -19,8 +33,11 @@ function Login() {
               <input
                 type="text"
                 id="uname"
+                value={uname}
+                onChange={(e) => setUname(e.target.value)}
                 placeholder="Enter username"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+                required
               />
             </div>
             <div>
@@ -33,8 +50,11 @@ function Login() {
               <input
                 type="password"
                 id="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter password"
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-400"
+                required
               />
             </div>
             <button
