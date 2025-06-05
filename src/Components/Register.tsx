@@ -1,43 +1,36 @@
 import "../index.css";
 import { Fragment, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
+import {
+  validateEmail,
+  validatePassword,
+  validateUsername,
+} from "../Services/validationHelper";
 
 function Register() {
   const [email, setEmail] = useState("");
   const [uname, setUname] = useState("");
   const [password, setPassword] = useState("");
-
-  const validateEmail = (email: string): boolean => {
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return regex.test(email);
-  };
-
-  const validateUsername = (username: string): boolean => {
-    const regex = /^[A-Za-z][A-Za-z0-9_]*$/;
-    return regex.test(username);
-  };
-
-  const validatePassword = (password: string): boolean => {
-    return password.length >= 8;
-  };
+  const [error, setError] = useState("");
 
   const handldeSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!validateEmail(email)) {
-      toast.error("Invalid email format.");
+    const emailValidation = validateEmail(email);
+    if (!emailValidation.isValid) {
+      setError(emailValidation.message ? emailValidation.message : "");
       return;
     }
 
-    if (!validateUsername(uname)) {
-      toast.error(
-        "Username must start with a letter and can contain only letters, numbers, and underscores."
-      );
+    const usernameValidation = validateUsername(uname);
+    if (!usernameValidation.isValid) {
+      setError(usernameValidation.message ? usernameValidation.message : "");
       return;
     }
 
-    if (!validatePassword(password)) {
-      toast.error("Password must be at least 8 characters long.");
+    const passwordValidation = validatePassword(password);
+    if (!passwordValidation.isValid) {
+      setError(passwordValidation.message ? passwordValidation.message : "");
       return;
     }
 
@@ -104,6 +97,7 @@ function Register() {
                 required
               />
             </div>
+            <div className="text-center text-red-600">{error}</div>
             <button
               type="submit"
               className="w-full py-2 px-4 text-white bg-red-500 hover:bg-red-600 rounded-md transition duration-200"
