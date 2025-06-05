@@ -1,7 +1,7 @@
 import "../index.css";
 import { Fragment, useState } from "react";
-import Register from "./Register";
-import { ToastContainer, toast } from "react-toastify/unstyled";
+import Register from "../Components/Register";
+import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const [uname, setUname] = useState("");
@@ -12,7 +12,7 @@ function Login() {
     if (uname == "pranita" && password == "pranita123") {
       toast.success("Login Sucessfull!");
     } else {
-      toast.error("Try again!");
+      toast.error("Invalid credentials. Please try again!");
     }
   };
 
