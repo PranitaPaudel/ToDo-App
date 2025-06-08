@@ -18,19 +18,19 @@ function Register() {
 
     const emailValidation = validateEmail(email);
     if (!emailValidation.isValid) {
-      setError(emailValidation.message ? emailValidation.message : "");
+      setError(emailValidation.message ?? "");
       return;
     }
 
     const usernameValidation = validateUsername(uname);
     if (!usernameValidation.isValid) {
-      setError(usernameValidation.message ? usernameValidation.message : "");
+      setError(usernameValidation.message ?? "");
       return;
     }
 
     const passwordValidation = validatePassword(password);
     if (!passwordValidation.isValid) {
-      setError(passwordValidation.message ? passwordValidation.message : "");
+      setError(passwordValidation.message ?? "");
       return;
     }
 
